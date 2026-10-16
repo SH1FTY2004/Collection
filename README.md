@@ -1,6 +1,6 @@
 # Deníček projektu – Uživatelské kolekce (`gql_metadata/Collections`)
 
-**Autoři:** Pavlis Lukáš a Nikola Haluzová
+**Autoři:** Pavlis Lukáš a Haluzová Nikola
 
 Tento dokument je deník celého průběhu vývoje projektu od prvního commitu až po stav před závěrečnou obhajobou. Zachycuje časovou posloupnost commitů, problémy, které jsme si definovali k vyřešení, co jsme při tom objevili, a hlavně které problémy se dlouho nedařilo řešit a jak byly nakonec vyřešeny.
 
