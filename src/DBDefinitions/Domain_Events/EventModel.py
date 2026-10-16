@@ -22,7 +22,7 @@ from src.DBDefinitions.BaseModel import BaseDBModel, UUIDColumn, UUIDFKey, IDTyp
 #
 ###########################################################################################################################
 class EventModel(BaseDBModel):
-    __tablename__ = "events"
+    __tablename__ = "events" 
 
     path_attribute_name = "path"
     parent_attribute_name = "masterevent"
