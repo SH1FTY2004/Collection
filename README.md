@@ -23,3 +23,14 @@ Z toho vyplynuly hlavní problémy k vyřešení:
 4. Umožnit řadit položky v kolekci (udržovat správně `position` při vkládání, odebírání a přesunu).
 5. Rozhodnout, jak ošetřit polymorfní referenci (ověřovat existenci vložené entity, nebo ne).
 6. Vyřešit autorizaci: kdo smí kolekci číst a měnit a jak naložit s `owner_id` u položky.
+
+
+Architektura
+
+Dodržujeme architekturu ze vzorového gql_evolution (větev 2026):
+
+GQLTyp / resolver  ->  Service  ->  Loader  ->  DBModel
+
+Resolver nikdy nesahá přímo do databáze, vždy jde přes službu a loader. Struktura src/ odpovídá vzoru (Modely / Loadery / Services / GQLModely).
+
+Technologie: Python 3.11+, strawberry-graphql (+ federation), uvicorn (ASGI), SQLAlchemy 2.x, DataLoaders, Docker / Docker Compose.
