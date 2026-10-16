@@ -34,3 +34,11 @@ GQLTyp / resolver  ->  Service  ->  Loader  ->  DBModel
 Resolver nikdy nesahá přímo do databáze, vždy jde přes službu a loader. Struktura src/ odpovídá vzoru (Modely / Loadery / Services / GQLModely).
 
 Technologie: Python 3.11+, strawberry-graphql (+ federation), uvicorn (ASGI), SQLAlchemy 2.x, DataLoaders, Docker / Docker Compose.
+
+# Deníček:
+
+## 16.10.2026 — Add Collection and CollectionItem models to Domain_Collections
+* Definice problému: Potřeba přidaní datových modelů.
+* Objeveno: -
+* Nevyřešené problémy: Potřeba přidání číselníku pro EntityTypeModel.
+* Vyřešené problémy: Založení potřebných datových modelů.
