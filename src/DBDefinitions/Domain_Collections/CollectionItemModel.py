@@ -29,7 +29,7 @@ class CollectionItemModel(BaseDBModel):
     user_id: Mapped[Optional[IDType]] = UUIDFKey(ForeignKey("users.id"), default=None, nullable=True, comment="User assigned to the invitation")
     entity_id: Mapped[IDType] = mapped_column(default=None, nullable=True)
     entity_type_id: Mapped[Optional[IDType]] = mapped_column(ForeignKey("entitytypes.id"), index=True, nullable=True, default=None,)
-    entity_type = relationship("EntityTypeModel", back_populates="items",)
+    #entity_type = 
     position: Mapped[int] = mapped_column(default=None, nullable=True)
 
 
