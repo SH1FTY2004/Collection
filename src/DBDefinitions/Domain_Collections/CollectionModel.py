@@ -31,6 +31,6 @@ class CollectionModel(BaseDBModel):
     user_id: Mapped[Optional[IDType]] = UUIDFKey(ForeignKey("users.id"), default=None, nullable=True, comment="User assigned to the invitation")
     color: Mapped[str] = mapped_column(default=None, nullable=True)
     
-
+    items = relationship("CollectionItemModel", uselist=True, init=True, cascade="save-update")
 
    

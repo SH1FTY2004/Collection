@@ -8,6 +8,7 @@ if typing.TYPE_CHECKING:
     from src.ServiceDefinitions.Domain_Events.EventInvitationService import EventInvitationService as _EventInvitationService
 
 
+
 @dataclasses.dataclass(frozen=True)
 class ServiceRegistry:
     @property
