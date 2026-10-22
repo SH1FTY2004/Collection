@@ -28,8 +28,8 @@ class CollectionItemModel(BaseDBModel):
     collection_id: Mapped[typing.Optional[IDType]] = mapped_column(ForeignKey("collections.id"), default=None, nullable=True, comment="Event assigned to the invitation")
     user_id: Mapped[Optional[IDType]] = UUIDFKey(ForeignKey("users.id"), default=None, nullable=True, comment="User assigned to the invitation")
     entity_id: Mapped[IDType] = mapped_column(default=None, nullable=True)
-    entity_type_id: Mapped[Optional[IDType]] = mapped_column(ForeignKey("entitytypes.id"), index=True, nullable=True, default=None,)
-    #entity_type = 
+    entity_type_id: Mapped[Optional[IDType]] = mapped_column(ForeignKey("entity_types.id"), index=True, nullable=True, default=None,)
+    entity_type = relationship("EntityTypeModel", back_populates="items",)
     position: Mapped[int] = mapped_column(default=None, nullable=True)
 
 
