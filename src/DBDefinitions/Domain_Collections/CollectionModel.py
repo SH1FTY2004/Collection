@@ -28,9 +28,17 @@ class CollectionModel(BaseDBModel):
 
     name: Mapped[str] = mapped_column(default=None, nullable=True)
     description: Mapped[str] = mapped_column(default=None, nullable=True)
-    user_id: Mapped[Optional[IDType]] = UUIDFKey(ForeignKey("users.id"), default=None, nullable=True, comment="User assigned to the invitation")
+    user_id: Mapped[Optional[IDType]] = UUIDFKey(ForeignKey("users.id"), default=None, nullable=True)
     color: Mapped[str] = mapped_column(default=None, nullable=True)
     
-    items = relationship("CollectionItemModel", uselist=True, init=True, cascade="save-update")
+    items: Mapped[list["CollectionItemModel"]] = relationship(
+        "CollectionItemModel",
+        order_by="CollectionItemModel.position",
+        back_populates="collection",
+        uselist=True,
+        init=True,
+        default_factory=list,
+        cascade="save-update",
+    )
 
    

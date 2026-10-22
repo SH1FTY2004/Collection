@@ -22,6 +22,22 @@ class EntityTypeModel(BaseDBModel):
     name_en: Mapped[Optional[str]] = mapped_column(nullable=True, default=None, comment="e.g. Project, Document",)
 
     parent_id: Mapped[Optional[IDType]] = mapped_column(ForeignKey("entity_types.id"), index=True, nullable=True, default=None, comment="nadřazený typ ve stromu typů",)
-    parent = relationship( "EntityTypeModel", back_populates="children", remote_side="EntityTypeModel.id", uselist=False,)
-    children = relationship( "EntityTypeModel", back_populates="parent", uselist=True, cascade="save-update",)
-    items = relationship("CollectionItemModel", back_populates="entity_type",)
+    parent: Mapped[Optional["EntityTypeModel"]] = relationship(
+        "EntityTypeModel",
+        back_populates="children",
+        remote_side="EntityTypeModel.id",
+        uselist=False,
+        default=None,
+    )
+    children: Mapped[list["EntityTypeModel"]] = relationship(
+        "EntityTypeModel",
+        back_populates="parent",
+        uselist=True,
+        default_factory=list,
+        cascade="save-update",
+    )
+    items: Mapped[list["CollectionItemModel"]] = relationship(
+        "CollectionItemModel",
+        back_populates="entity_type",
+        default_factory=list,
+    )

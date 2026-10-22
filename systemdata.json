@@ -6,11 +6,11 @@
     "event_invitations": [
     ],
     "entity_types": [
-        { "id": "3f1c2a5e-8b7d-4e1a-9c3f-2a6b5d4e7f10", "name": "Entita"},
-        { "id": "5a9d7c31-2e84-4b6f-a1d0-9f3c8e2b6a47", "name": "Projekt"},
-        { "id": "8c4e1b92-7a35-4d08-b6f1-3e9a2c5d7b84", "name": "Grantová výzva" },
-        { "id": "1d7f3a68-c452-4e9b-8a0d-6b2e9f4c1a53", "name": "Dokument"},
-        { "id": "b2e86f04-93ad-47c1-a5e7-0d1c4f8a3b96", "name": "Událost"}
+        { "id": "3f1c2a5e-8b7d-4e1a-9c3f-2a6b5d4e7f10", "name": "Entita", "name_en": "Entity" },
+        { "id": "5a9d7c31-2e84-4b6f-a1d0-9f3c8e2b6a47", "name": "Projekt", "name_en": "Project","parent_id": "3f1c2a5e-8b7d-4e1a-9c3f-2a6b5d4e7f10" },
+        { "id": "8c4e1b92-7a35-4d08-b6f1-3e9a2c5d7b84", "name": "Grantová výzva", "name_en": "Grant call","parent_id": "3f1c2a5e-8b7d-4e1a-9c3f-2a6b5d4e7f10" },
+        { "id": "1d7f3a68-c452-4e9b-8a0d-6b2e9f4c1a53", "name": "Dokument", "name_en": "Document","parent_id": "3f1c2a5e-8b7d-4e1a-9c3f-2a6b5d4e7f10" },
+        { "id": "b2e86f04-93ad-47c1-a5e7-0d1c4f8a3b96", "name": "Událost", "name_en": "Event","parent_id": "3f1c2a5e-8b7d-4e1a-9c3f-2a6b5d4e7f10" }
     ],
     "collections": [
         {

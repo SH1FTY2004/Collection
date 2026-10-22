@@ -90,6 +90,7 @@ async def PostgreSQL():
     assert session_maker is not None, "Unable to create async session maker"
 
     async with session_maker() as session:
+        await init_database_data(session)
         yield session
 
     remove = getattr(session_maker, "remove", None)
@@ -112,7 +113,7 @@ async def SQLLite(tmp_path):
     assert session_maker is not None, "Unable to create async session maker"
 
     async with session_maker() as session:
-        await init_database_data(session)
+        #await init_database_data(session)
         yield session
 
     remove = getattr(session_maker, "remove", None)

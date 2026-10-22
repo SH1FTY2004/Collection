@@ -25,12 +25,23 @@ from src.DBDefinitions.BaseModel import BaseDBModel, UUIDColumn, UUIDFKey, IDTyp
 class CollectionItemModel(BaseDBModel):
     __tablename__ = "collection_items" 
 
-    collection_id: Mapped[typing.Optional[IDType]] = mapped_column(ForeignKey("collections.id"), default=None, nullable=True, comment="Event assigned to the invitation")
+    collection_id: Mapped[Optional[IDType]] = mapped_column(ForeignKey("collections.id"), index =True, nullable=True, default=None,)
+    collection: Mapped[Optional["CollectionModel"]] = relationship(
+        "CollectionModel",
+        back_populates="items",
+        default=None,
+    )
     user_id: Mapped[Optional[IDType]] = UUIDFKey(ForeignKey("users.id"), default=None, nullable=True, comment="User assigned to the invitation")
     entity_id: Mapped[IDType] = mapped_column(default=None, nullable=True)
     entity_type_id: Mapped[Optional[IDType]] = mapped_column(ForeignKey("entity_types.id"), index=True, nullable=True, default=None,)
-    entity_type = relationship("EntityTypeModel", back_populates="items",)
+    entity_type: Mapped[Optional["EntityTypeModel"]] = relationship(
+        "EntityTypeModel",
+        back_populates="items",
+        default=None,
+    )
     position: Mapped[int] = mapped_column(default=None, nullable=True)
+
+    __table_args__ = (sqlalchemy.Index("ix_collection_items_entity", "entity_type_id", "entity_id"),)
 
 
    
