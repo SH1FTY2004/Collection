@@ -27,7 +27,7 @@ class EntityTypeModel(BaseDBModel):
         back_populates="children",
         remote_side="EntityTypeModel.id",
         uselist=False,
-        default=None,
+        init=False,
     )
     children: Mapped[list["EntityTypeModel"]] = relationship(
         "EntityTypeModel",

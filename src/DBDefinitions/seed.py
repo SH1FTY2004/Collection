@@ -5,7 +5,7 @@ import uuid
 
 from contextlib import asynccontextmanager
 
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from sqlalchemy import inspect as sa_inspect
 from sqlalchemy.exc import NoInspectionAvailable
 
@@ -83,14 +83,23 @@ async def init_database_data(session: AsyncSession, get_demodata=get_demodata) -
     table_names = [Model.__tablename__ for Model in ModelsToImport]
     modelIndex = dict((DBModel.__tablename__, DBModel) for DBModel in ModelsToImport)
     print(f"Models to import: {ModelsToImport}\nTable names: {table_names}\nModel index: {modelIndex}", flush=True)
+    
+    #@asynccontextmanager
+    #async def session_maker():
+    #   try:
+    #        yield session
+    #   finally:
+    #       pass
 
-    @asynccontextmanager
-    async def session_maker():
-        try:
-            yield session
-        finally:
-            pass
+    #await ImportModels(session_maker, ModelsToImport, json_data)
+    
+
+
+    # uoishelpers.feeders ocekava, ze kazde volani session_maker() vrati NOVOU session,
+    # sdilena jedna session konci chybou "A transaction is already begun"
+    session_maker = async_sessionmaker(
+        session.bind, expire_on_commit=False, class_=AsyncSession
+    )
 
     await ImportModels(session_maker, ModelsToImport, json_data)
-
     print("Data initialized", flush=True)
